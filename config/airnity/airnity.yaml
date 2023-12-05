@@ -1,0 +1,65 @@
+# Your username
+username: julien.duizabo
+# Your main role
+mainRole: platform-deployer
+
+# AWS relative configuration
+aws:
+  # List of AWS accounts to be scanned
+  accounts:
+    - name: it
+      id: "024454689942"
+      regions:
+        - eu-west-3
+    - name: dev
+      id: "000312627845"
+      regions:
+        - eu-west-3
+    - name: sandbox
+      id: "741500416361"
+      regions:
+        - eu-west-3
+    - name: prod
+      id: "631377126141"
+      regions:
+        - eu-west-3
+        - eu-central-1
+        - sa-east-1
+
+# Docker/Container relative configuration
+container:
+  # List of docker registries to be scanned
+  registries:
+    # AWS ECR relative configuration
+    ecr:
+      - accountName: it
+        region: eu-west-3
+        # Role template to authenticate to the registry
+        roleTemplate: arn:aws:iam::{{ .AccountID }}:role/{{ .MainRole }}-{{ .AccountName}}
+
+# Kubernetes relative configuration
+k8s:
+  # Path to the generated kubeconfig file
+  kubeconfigPath: ~/.kube/config
+  # EKS relative configuration (AWS)
+  eks:
+    # Role template to list clusters
+    listingRoleTemplate: "arn:aws:iam::{{ .AccountID }}:role/{{.MainRole}}-{{ .AccountName }}"
+    # The different roles template to use for each k8s cluster authentication
+    roleTemplates:
+      read: "arn:aws:iam::{{ .AccountID }}:role/{{.MainRole}}-{{ .AccountName }}"
+      admin: "arn:aws:iam::{{ .AccountID }}:role/administrator-{{ .AccountName }}"
+      platform-deployer: "arn:aws:iam::{{ .AccountID }}:role/platform-deployer-{{ .AccountName }}"
+    # The different exclusions
+    exclude:
+      # # List of AWS account to be excluded
+      # accounts:
+      #   - dev
+      #   - sandbox
+      #   - prod
+      # # List of AWS regions to be excluded
+      # regions:
+      #   - eu-west-3
+      # # List of k8s clusters to be excluded
+      # clusters:
+      #   - vault-1

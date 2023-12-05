@@ -1,0 +1,182 @@
+#!/bin/bash
+set -e
+
+OS=$(uname)
+source $HOME/.my-profile/.env
+
+if ! command -v brew &>/dev/null; then
+  echo "Install brew"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  echo "Update brew"
+  brew update
+fi
+
+brew tap homebrew/cask-fonts
+
+export BREW_HOME=/opt/homebrew/bin
+export PATH=$PATH:$BREW_HOME
+
+echo "Install cask taps"
+
+if [[ "$OS" == 'Darwin' ]]; then
+  echo "Install casks"
+  $BREW_HOME/brew install --cask \
+    1password \
+    1password-cli \
+    alfred \
+    arc \
+    bartender \
+    daisydisk \
+    font-fira-code \
+    font-meslo-lg-nerd-font \
+    insomnia \
+    istat-menus \
+    iterm2 \
+    monitorcontrol \
+    microsoft-outlook \
+    orbstack \
+    plex-media-server \
+    rambox \
+    rectangle \
+    spotify \
+    spectacle \
+    steam \
+    tailscale \
+    transmission \
+    visual-studio-code \
+    vlc \
+    xca
+fi
+
+if [[ "$OS" == 'Darwin' ]]; then
+  echo "Install Darwin formulae"
+  $BREW_HOME/brew install \
+    pinentry-mac
+fi
+
+echo "Install taps"
+$BREW_HOME/brew tap \
+  oven-sh/bun
+
+echo "Install formulae"
+$BREW_HOME/brew install \
+  ack \
+  aicommits \
+  autoenv \
+  autojump \
+  aws-vault \
+  awscli \
+  bat \
+  diff-so-fancy \
+  fzf \
+  gh \
+  git-lfs \
+  gnu-sed \
+  gpg \
+  helm \
+  htop \
+  httpie \
+  ipcalc \
+  jq \
+  k9s \
+  krew \
+  kubectl \
+  kubectx \
+  kubeseal \
+  kustomize \
+  lazydocker \
+  nvm \
+  postgresql@16 \
+  powerlevel10k \
+  rclone \
+  rustup-init \
+  speedtest-cli \
+  viddy \
+  vim \
+  watch \
+  wget \
+  ykman \
+  yq \
+
+echo "Upgrade casks"
+$BREW_HOME/brew upgrade --cask --greedy
+
+echo "Upgrade formulae"
+$BREW_HOME/brew upgrade --formulae
+
+# setup aicommits
+echo "Setup aicommits"
+aicommits config set type=conventional
+aicommits config set generate=3
+aicommits config set model=gpt-4
+# test if OPENAI_KEY is set
+if [ -z "$OPENAI_KEY" ]; then
+  echo "OPENAI_KEY is not set"
+else
+  aicommits config set OPENAI_KEY=$OPENAI_KEY
+fi
+
+
+# Oh my zsh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo "Install Oh My ZSH"
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting" ]; then
+  echo "Install OMZ syntax highlighting plugin"
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+fi
+
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+  echo "Install OMZ autosuggestions plugin"
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+fi
+
+if [ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-history-substring-search" ]; then
+  echo "Install OMZ zsh history substring search"
+  git clone https://github.com/zsh-users/zsh-history-substring-search $HOME/.oh-my-zsh/custom/plugins/zsh-history-substring-search
+fi
+
+echo "Create symlink for gitconfig"
+ln -sf $HOME/.my-profile/config/git/gitconfig $HOME/.gitconfig
+
+echo "Create symlink for gitignore"
+ln -sf $HOME/.my-profile/config/git/gitignore $HOME/.gitignore
+
+echo "Create symlink for gpg"
+ln -sf /usr/local/bin/gpg /opt/homebrew/bin/gpg2
+mkdir -p $HOME/.gnupg
+chmod 700 $HOME/.gnupg
+ln -sf $HOME/.my-profile/config/gpg/gpg-agent.conf $HOME/.gnupg/gpg-agent.conf
+
+echo "Create symlink for sed"
+ln -sf /usr/local/bin/gsed /opt/homebrew/bin/sed
+
+echo "Create symlink for zsh"
+ln -sf $HOME/.my-profile/config/zsh/zshrc $HOME/.zshrc
+
+echo "Create symlink for p10k"
+ln -sf $HOME/.my-profile/config/zsh/p10k.zsh $HOME/.p10k.zsh
+
+echo "Create symlink for k9s"
+mkdir -p ~/.config/k9s/
+ln -sf $HOME/.my-profile/config/k9s/plugin.yml $HOME/.config/k9s/plugin.yml
+ln -sf $HOME/.my-profile/config/k9s/hotkey.yml $HOME/.config/k9s/hotkey.yml
+ln -sf $HOME/.my-profile/config/k9s/views.yml $HOME/.config/k9s/views.yml
+
+echo "Create symlink for bat config"
+mkdir -p ~/.config/bat/
+ln -sf $HOME/.my-profile/config/bat/config-dark $HOME/.config/bat/config
+
+echo "Create symlink for airnity"
+ln -sf $HOME/.my-profile/config/airnity/airnity.yaml $HOME/.airnity.yaml
+
+echo "Create local bin dir"
+mkdir -p $HOME/.local/bin
+
+echo "Create .kube dir"
+mkdir -p $HOME/.kube
+
+chsh -s /bin/zsh
