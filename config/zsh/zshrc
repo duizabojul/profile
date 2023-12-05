@@ -184,7 +184,7 @@ kcx () {
 alias kcn="kubectl config set-context --current --namespace"
 alias wkb="watch kubectl"
 alias kdebug="kubectl run -i --tty --rm debug --image=024454689942.dkr.ecr.eu-west-3.amazonaws.com/airnity-utils:edge --restart=Never -- bash && kubectl delete pod debug"
-export KUBECONFIG=$KUBECONFIG:$(ls ~/.kube | grep conf | awk -v d="$HOME/.kube/" '{ printf "%s%s:", d,$0}')
+export KUBECONFIG=$(ls ~/.kube | grep conf | awk -v d="$HOME/.kube/" '{ printf "%s%s:", d,$0}')
 
 # Kubernetes plugins
 export PATH="${PATH}:${HOME}/.krew/bin"
