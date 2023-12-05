@@ -144,9 +144,9 @@ AUTOENV_ENABLE_LEAVE="true"
 AUTOENV_ASSUME_YES="true"
 source $(brew --prefix autoenv)/activate.sh
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# config files
+alias zshrc="code $HOME/.zshrc"
+alias gitconfig="code $HOME/.gitconfig"
 
 # misc aliases
 alias f="open ."
