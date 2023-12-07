@@ -55,10 +55,6 @@ if [[ "$OS" == 'Darwin' ]]; then
     pinentry-mac
 fi
 
-echo "Install taps"
-$BREW_HOME/brew tap \
-  oven-sh/bun
-
 echo "Install formulae"
 $BREW_HOME/brew install \
   ack \
@@ -89,6 +85,7 @@ $BREW_HOME/brew install \
   nvm \
   postgresql@16 \
   powerlevel10k \
+  protobuf \
   rclone \
   rustup-init \
   speedtest-cli \
