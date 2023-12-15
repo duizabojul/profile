@@ -33,8 +33,10 @@ if [[ "$OS" == 'Darwin' ]]; then
     insomnia \
     istat-menus \
     iterm2 \
+    kreya \
     monitorcontrol \
     microsoft-outlook \
+    obs \
     orbstack \
     plex-media-server \
     rambox \
@@ -69,6 +71,7 @@ $BREW_HOME/brew install \
   gh \
   git-lfs \
   gnu-sed \
+  go \
   gpg \
   helm \
   htop \
