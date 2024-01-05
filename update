@@ -66,13 +66,16 @@ $BREW_HOME/brew install \
   aws-vault \
   awscli \
   bat \
+  devspace \
   diff-so-fancy \
+  firebase-cli \
   fzf \
   gh \
   git-lfs \
   gnu-sed \
   go \
   gpg \
+  grpcurl \
   helm \
   htop \
   httpie \
@@ -85,6 +88,7 @@ $BREW_HOME/brew install \
   kubeseal \
   kustomize \
   lazydocker \
+  mono \
   nvm \
   postgresql@16 \
   powerlevel10k \
@@ -95,6 +99,7 @@ $BREW_HOME/brew install \
   viddy \
   vim \
   watch \
+  wine-stable \
   wget \
   ykman \
   yq \

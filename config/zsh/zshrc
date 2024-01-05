@@ -146,6 +146,7 @@ source $(brew --prefix autoenv)/activate.sh
 
 # config files
 alias zshrc="code $HOME/.zshrc"
+alias kubeconfig="code $HOME/.kube/config"
 alias gitconfig="code $HOME/.gitconfig"
 
 # misc aliases
@@ -186,6 +187,14 @@ alias wkb="watch kubectl"
 alias kdebug="kubectl run -i --tty --rm debug --image=024454689942.dkr.ecr.eu-west-3.amazonaws.com/airnity-utils:edge --restart=Never -- bash && kubectl delete pod debug"
 export KUBECONFIG=$(ls ~/.kube | grep conf | awk -v d="$HOME/.kube/" '{ printf "%s%s:", d,$0}')
 
+# docker compose aliases
+alias dc="docker-compose"
+alias dev="docker compose --project-directory . -f devops/compose/dev.compose.yaml"
+alias devr="dev run --rm --service-ports"
+alias devd="dev down"
+alias awsdev="aws-vault exec default --no-session -- docker compose --project-directory . -f devops/compose/dev.compose.yaml"
+alias awsdevr="aws-vault exec default --no-session -- docker compose --project-directory . -f devops/compose/dev.compose.yaml run --rm --service-ports"
+
 # Kubernetes plugins
 export PATH="${PATH}:${HOME}/.krew/bin"
 
@@ -194,6 +203,7 @@ export PATH="${PATH}:${HOME}/.krew/bin"
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
+
 
 # Local bin dir
 export PATH=$PATH:$HOME/.local/bin
