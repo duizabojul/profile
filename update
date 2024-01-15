@@ -74,6 +74,7 @@ $BREW_HOME/brew install \
   git-lfs \
   gnu-sed \
   go \
+  google-cloud-sdk \
   gpg \
   grpcurl \
   helm \
@@ -90,10 +91,13 @@ $BREW_HOME/brew install \
   lazydocker \
   mono \
   nvm \
+  pnpm \
   postgresql@16 \
   powerlevel10k \
   protobuf \
   rclone \
+  rust \
+  rustfmt \
   rustup-init \
   speedtest-cli \
   viddy \
@@ -101,6 +105,7 @@ $BREW_HOME/brew install \
   watch \
   wine-stable \
   wget \
+  yarn \
   ykman \
   yq \
 
@@ -167,9 +172,9 @@ ln -sf $HOME/.my-profile/config/zsh/p10k.zsh $HOME/.p10k.zsh
 
 echo "Create symlink for k9s"
 mkdir -p ~/.config/k9s/
-ln -sf $HOME/.my-profile/config/k9s/plugin.yml $HOME/.config/k9s/plugin.yml
-ln -sf $HOME/.my-profile/config/k9s/hotkey.yml $HOME/.config/k9s/hotkey.yml
-ln -sf $HOME/.my-profile/config/k9s/views.yml $HOME/.config/k9s/views.yml
+ln -sf $HOME/.my-profile/config/k9s/plugins.yaml $HOME/.config/k9s/plugins.yaml
+ln -sf $HOME/.my-profile/config/k9s/hotkeys.yaml $HOME/.config/k9s/hotkeys.yaml
+ln -sf $HOME/.my-profile/config/k9s/views.yaml $HOME/.config/k9s/views.yaml
 
 echo "Create symlink for bat config"
 mkdir -p ~/.config/bat/

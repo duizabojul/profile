@@ -151,6 +151,8 @@ alias gitconfig="code $HOME/.gitconfig"
 
 # misc aliases
 alias f="open ."
+alias pn="pnpm"
+alias k9s="k9s -A"
 function cs () {
     cd $1
     ls
@@ -220,8 +222,6 @@ export PATH=$PATH:$HOME/.my-profile/scripts
 # Docker
 alias ldk="lazydocker"
 
-
-
 # ifconfig.co
 alias addr="http -b https://ifconfig.co/json"
 
@@ -231,6 +231,10 @@ export PATH="$PATH:$HOME/go/bin"
 # Airnity cli
 source <(airnity completion zsh); compdef _airnity airnity
 alias rnt='airnity'
+
+# Google cloud
+source "$(brew --prefix)/share/google-cloud-sdk/path.zsh.inc"
+source "$(brew --prefix)/share/google-cloud-sdk/completion.zsh.inc"
 
 # Docker
 export PATH=$PATH:$HOME/.docker/bin

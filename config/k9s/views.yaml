@@ -1,0 +1,10 @@
+views:
+  v1/events:
+    columns:
+      - LAST SEEN
+      - TYPE
+      - REASON
+      - COUNT
+      - OBJECT
+      - SOURCE
+      - MESSAGE
