@@ -25,11 +25,11 @@ plugins:
   remove_finalizers:
     shortCut: Ctrl-F
     confirm: true
+    description: Removes finalizers
     scopes:
       - all
-    description: |
-      Removes finalizers
     background: true
+    command: kubectl
     args:
       - patch
       - --context
