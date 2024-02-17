@@ -8,3 +8,13 @@ hotKeys:
     shortCut: Shift-2
     description: Viewing pods
     command: pods
+
+  shift-3:
+    shortCut: Shift-3
+    description: Viewing sts
+    command: sts
+
+  shift-4:
+    shortCut: Shift-4
+    description: Viewing crds
+    command: crds

@@ -71,3 +71,5 @@
     email = julien.duizabo@airnity.com
     signingkey = A3524A24ED1FBEB6
 
+[credential]
+	helper = store
