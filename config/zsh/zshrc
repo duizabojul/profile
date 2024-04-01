@@ -168,6 +168,9 @@ alias gua="git unadd"
 alias gcm="git commit -m"
 alias yolo='git commit -m "$(curl -s http://whatthecommit.com/index.txt)"'
 alias gcf='git commit --amend --reuse-message=HEAD'
+replace-tag() {
+  git tag -d $1 && git push --delete origin $1 && git tag $1 && git push origin $1
+}
 alias forcepush="git commit --amend --reuse-message=HEAD && git push --force-with-lease"
 alias oc="aicommits"
 alias ghview="gh repo view --web"
@@ -192,8 +195,8 @@ export KUBECONFIG=$(ls ~/.kube | grep conf | awk -v d="$HOME/.kube/" '{ printf "
 # docker compose aliases
 alias dc="docker-compose"
 alias dev="docker compose --project-directory . -f devops/compose/dev.compose.yaml"
-alias devr="dev run --rm --service-ports"
-alias devd="dev down"
+alias devr="dev run --rm --remove-orphans --service-ports"
+alias devd="dev down --remove-orphans"
 alias awsdev="aws-vault exec default --no-session -- docker compose --project-directory . -f devops/compose/dev.compose.yaml"
 alias awsdevr="aws-vault exec default --no-session -- docker compose --project-directory . -f devops/compose/dev.compose.yaml run --rm --service-ports"
 

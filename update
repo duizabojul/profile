@@ -27,6 +27,7 @@ if [[ "$OS" == 'Darwin' ]]; then
     alfred \
     arc \
     bartender \
+    bruno \
     daisydisk \
     font-fira-code \
     font-meslo-lg-nerd-font \
@@ -68,6 +69,7 @@ $BREW_HOME/brew install \
   awscli \
   bat \
   devspace \
+  dive \
   diff-so-fancy \
   firebase-cli \
   fzf \
@@ -104,7 +106,7 @@ $BREW_HOME/brew install \
   rustfmt \
   rustup-init \
   speedtest-cli \
-  datawire/blackbird/telepresence-arm64 \
+  terraform \
   viddy \
   vim \
   watch \
@@ -114,6 +116,7 @@ $BREW_HOME/brew install \
   ykman \
   yq \
   yubikey-personalization \
+  zx
 
 echo "Upgrade casks"
 $BREW_HOME/brew upgrade --cask --greedy
