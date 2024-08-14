@@ -26,6 +26,14 @@ aws:
         - eu-central-1
         - sa-east-1
 
+gcp:
+  # List of GCP folders to be scanned
+  folders:
+    - name: admin
+      id: "folders/15376977318"
+    - name: infra
+      id: "folders/776314525875"
+
 # Docker/Container relative configuration
 container:
   # List of docker registries to be scanned

@@ -12,8 +12,6 @@ else
   brew update
 fi
 
-brew tap homebrew/cask-fonts
-
 export BREW_HOME=/opt/homebrew/bin
 export PATH=$PATH:$BREW_HOME
 
@@ -37,7 +35,6 @@ if [[ "$OS" == 'Darwin' ]]; then
     kreya \
     monitorcontrol \
     microsoft-outlook \
-    obs \
     orbstack \
     plex-media-server \
     rambox \
@@ -110,7 +107,6 @@ $BREW_HOME/brew install \
   viddy \
   vim \
   watch \
-  wine-stable \
   wget \
   yarn \
   ykman \

@@ -128,10 +128,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+
 export PATH=$PATH:$HOME/.my-profile
 
 export PATH=/opt/homebrew/bin/:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
+export PATH=/opt/homebrew/opt/libpq/bin:$PATH
 
 # History substring
 bindkey "$terminfo[kcuu1]" history-substring-search-up
@@ -158,7 +160,7 @@ function cs () {
     ls
 }
 alias cd="cs"
-
+alias tf="terraform"
 
 #Git alias
 alias zshrc="code ~/.zshrc"
@@ -193,7 +195,7 @@ alias kdebug="kubectl run -i --tty --rm debug --image=024454689942.dkr.ecr.eu-we
 export KUBECONFIG=$(ls ~/.kube | grep conf | awk -v d="$HOME/.kube/" '{ printf "%s%s:", d,$0}')
 
 # docker compose aliases
-alias dc="docker-compose"
+alias dc="docker compose"
 alias dev="docker compose --project-directory . -f devops/compose/dev.compose.yaml"
 alias devr="dev run --rm --remove-orphans --service-ports"
 alias devd="dev down --remove-orphans"
@@ -254,3 +256,6 @@ source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.my-profile/config/zsh/p10k.zsh.
 [[ ! -f ~/.my-profile/config/zsh/p10k.zsh ]] || source ~/.my-profile/config/zsh/p10k.zsh
+
+export PATH=/opt/homebrew/opt/python@3.12/libexec/bin:$PATH
+export CLOUDSDK_PYTHON_SITEPACKAGES=1
