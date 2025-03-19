@@ -95,6 +95,7 @@ plugins=(
   macos
   minikube
   vscode
+  you-should-use
   zsh-autosuggestions
   zsh-history-substring-search
   zsh-syntax-highlighting
@@ -130,6 +131,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 export PATH=$PATH:$HOME/.my-profile
+export PATH=$PATH:$HOME/.cargo/bin
 
 export PATH=/opt/homebrew/bin/:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
@@ -154,13 +156,13 @@ alias gitconfig="code $HOME/.gitconfig"
 # misc aliases
 alias f="open ."
 alias pn="pnpm"
-alias k9s="k9s -A"
 function cs () {
     cd $1
     ls
 }
 alias cd="cs"
 alias tf="terraform"
+alias aa='airnity a login'
 
 #Git alias
 alias zshrc="code ~/.zshrc"
@@ -182,6 +184,7 @@ alias al="alias | grep"
 alias alf="alias | fzf"
 
 # Kubernetes alias
+alias k9s="k9s -A"
 alias k=kubectl
 alias kb=kubectl
 alias kc=kubectx
@@ -196,11 +199,9 @@ export KUBECONFIG=$(ls ~/.kube | grep conf | awk -v d="$HOME/.kube/" '{ printf "
 
 # docker compose aliases
 alias dc="docker compose"
-alias dev="docker compose --project-directory . -f devops/compose/dev.compose.yaml"
+alias dev="docker compose -f dev.compose.yaml"
 alias devr="dev run --rm --remove-orphans --service-ports"
 alias devd="dev down --remove-orphans"
-alias awsdev="aws-vault exec default --no-session -- docker compose --project-directory . -f devops/compose/dev.compose.yaml"
-alias awsdevr="aws-vault exec default --no-session -- docker compose --project-directory . -f devops/compose/dev.compose.yaml run --rm --service-ports"
 
 # Kubernetes plugins
 export PATH="${PATH}:${HOME}/.krew/bin"
@@ -259,3 +260,25 @@ source $HOMEBREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme
 
 export PATH=/opt/homebrew/opt/python@3.12/libexec/bin:$PATH
 export CLOUDSDK_PYTHON_SITEPACKAGES=1
+
+
+# Virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+export PIP_REQUIRE_VIRTUALENV=true
+export VIRTUAL_ENV_DISABLE_PROMPT=1
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+export VIRTUALENVWRAPPER_PYTHON='/opt/homebrew/bin/python3'
+export VIRTUALENVWRAPPER_VIRTUALENV='/opt/homebrew/bin/virtualenv'
+
+# Virtualenvwrapper
+source /opt/homebrew/bin/virtualenvwrapper_lazy.sh
+
+export YSU_MESSAGE_POSITION="after"
+export DEV_DOMAIN=jduizabo.u.airnity.private
+
+
+alias gofiles='(find . -name "*.go" -type f -print0 | while IFS= read -r -d "" file; do
+    echo "=== File: $file ===";
+    cat "$file";
+    echo "";
+done) | tee >(pbcopy)'

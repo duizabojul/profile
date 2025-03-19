@@ -7,18 +7,6 @@ mainRole: platform-deployer
 aws:
   # List of AWS accounts to be scanned
   accounts:
-    - name: it
-      id: "024454689942"
-      regions:
-        - eu-west-3
-    - name: dev
-      id: "000312627845"
-      regions:
-        - eu-west-3
-    - name: sandbox
-      id: "741500416361"
-      regions:
-        - eu-west-3
     - name: prod
       id: "631377126141"
       regions:
@@ -55,9 +43,7 @@ k8s:
     listingRoleTemplate: "arn:aws:iam::{{ .AccountID }}:role/{{.MainRole}}-{{ .AccountName }}"
     # The different roles template to use for each k8s cluster authentication
     roleTemplates:
-      read: "arn:aws:iam::{{ .AccountID }}:role/{{.MainRole}}-{{ .AccountName }}"
       admin: "arn:aws:iam::{{ .AccountID }}:role/administrator-{{ .AccountName }}"
-      platform-deployer: "arn:aws:iam::{{ .AccountID }}:role/platform-deployer-{{ .AccountName }}"
     # The different exclusions
     exclude:
       # # List of AWS account to be excluded

@@ -39,6 +39,7 @@ if [[ "$OS" == 'Darwin' ]]; then
     plex-media-server \
     rambox \
     rectangle \
+    slack \
     spotify \
     spectacle \
     steam \
@@ -62,8 +63,6 @@ $BREW_HOME/brew install \
   aicommits \
   autoenv \
   autojump \
-  aws-vault \
-  awscli \
   bat \
   devspace \
   dive \
@@ -88,7 +87,6 @@ $BREW_HOME/brew install \
   krew \
   kubectl \
   kubectx \
-  kubeseal \
   kustomize \
   lazydocker \
   mono \
@@ -99,9 +97,6 @@ $BREW_HOME/brew install \
   powerlevel10k \
   protobuf \
   rclone \
-  rust \
-  rustfmt \
-  rustup-init \
   speedtest-cli \
   terraform \
   viddy \
@@ -124,7 +119,7 @@ $BREW_HOME/brew upgrade --formulae
 echo "Setup aicommits"
 aicommits config set type=conventional
 aicommits config set generate=3
-aicommits config set model=gpt-4
+aicommits config set model=gpt-4o
 # test if OPENAI_KEY is set
 if [ -z "$OPENAI_KEY" ]; then
   echo "OPENAI_KEY is not set"
